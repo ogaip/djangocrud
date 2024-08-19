@@ -1,0 +1,57 @@
+{% extends 'layout/main.html' %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="card mt-5 col-4">
+        <div class="card-header">
+          <h3>Registro de Usuarios</h3>
+        </div>
+        <div class="card-body">
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group mt-3">
+              <label for="" class="form-label"><h3>Usuario</h3></label>
+              {{ form.username|safe }}
+              <p class="form-text text-muted">
+                <small id="helpId" class="text-muted">{{ form.username.help_text }}</small>
+              </p>
+            </div>
+            <div class="form-group mt-3">
+              <label for="" class="form-label"><h3>Contraseña</h3></label>
+              {{ form.password1 }}
+              <p class="form-text text-muted">
+                <small id="helpId" class="text-muted">{{ form.password1.help_text }}</small>
+              </p>
+
+              <div class="text-danger">
+                {% for error in form.password1.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="" class="form-label"><h3>Confirmar Password</h3></label>
+
+              {{ form.password2 }}
+              <p class="form-text text-muted">
+                <small id="helpId" class="text-muted">{{ form.password2.help_text }}</small>
+              </p>
+
+              <div class="text-danger">
+                {% for error in form.non_field_errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Registrarse</button>
+              <a href="{% url 'home' %}">Iniciar Sesión</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+{% endblock %}
